@@ -19,10 +19,10 @@ public class User {
     private String password;
 
     @Column(name = "first_name")
-    private String first_name;
+    private String firstName;
 
     @Column(name = "last_name")
-    private String last_name;
+    private String lastName;
 
     @Column(name = "enabled")
     private boolean enabled;
@@ -37,13 +37,13 @@ public class User {
     public User() {
     }
 
-    public User(String email, String password, String first_name, String last_name, boolean enabled, String username) {
-        this.email = email;
+    public User(String email, String password, String firstName, String lastName, boolean enabled, String username) {
+        this.setEmail(email);
         this.setPassword(password);
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.enabled = enabled;
-        this.username = username;
+        this.setFirstName(firstName);
+        this.setLastName(lastName);
+        this.setEnabled(enabled);
+        this.setUsername(username);
     }
 
     public long getId() {
@@ -71,20 +71,20 @@ public class User {
         this.password = passwordEncoder.encode(password);
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public boolean isEnabled() {

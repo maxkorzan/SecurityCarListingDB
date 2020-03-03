@@ -9,5 +9,12 @@
 <h3>Secure Page</h3>
 <a href="/logout">logout</a>
 
+<p th:inline="text"><strong>First name: </strong>[[${user.firstName}]]</p>
+<p th:inline="text"><strong>Last name: </strong>[[${user.lastName}]]</p>
+<p th:inline="text"><strong>Email: </strong>[[${user.email}]]</p>
+<p th:inline="text"><strong>Username: </strong>[[${user.username}]]</p>
+<p th:inline="text"><strong>Password: </strong>[[${user.password}]]</p>
+
+
 </body>
 </html>
