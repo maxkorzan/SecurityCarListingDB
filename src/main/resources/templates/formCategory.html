@@ -5,7 +5,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="../static/style.css">
+    <link rel="stylesheet" type="text/css" href="/style.css">
     <style>
         /** { border: 1px solid red !important; }*/
     </style>
@@ -24,7 +24,7 @@
 
     <div class="row">
         <div class="col-4" ></div>
-        <div class="col-4" >
+        <div class="col-4 text-center">
 
             <form th:action="@{/processCategory}" th:object="${category}" method="post">
                 <input type="hidden" th:field="*{id}">
@@ -34,7 +34,8 @@
                     <span th:if="${#fields.hasErrors('name')}"
                           th:errors="*{name}"></span>
                 </div>
-                <button type="submit" value="Submit" class="btn btn-lg btn-outline-light" style="margin: auto"><strong>Submit</strong></button>
+                <br>
+                <button type="submit" value="Submit" class="btn btn-lg btn-outline-light"><strong>Submit</strong></button>
                 <br>
             </form>
 

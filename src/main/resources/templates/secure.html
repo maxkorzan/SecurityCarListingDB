@@ -3,18 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <style>
+        /** { border: 1px solid red !important; }*/
+    </style>
+
 </head>
 <body>
 
-<h3>Secure Page</h3>
-<a href="/logout">logout</a>
+<div th:replace="base :: navbar"></div>
+<br>
+<br>
 
-<p th:inline="text"><strong>First name: </strong>[[${user.firstName}]]</p>
-<p th:inline="text"><strong>Last name: </strong>[[${user.lastName}]]</p>
-<p th:inline="text"><strong>Email: </strong>[[${user.email}]]</p>
-<p th:inline="text"><strong>Username: </strong>[[${user.username}]]</p>
-<p th:inline="text"><strong>Password: </strong>[[${user.password}]]</p>
+<div class="container bg-faded text-white" style="">
+
+<!--    ////////////////////////////////////////////////////////////////////////////////-->
+<!--    <h3>Secure Page</h3>-->
+<!--    <a href="/logout">logout</a>-->
+
+<!--    <p th:inline="text"><strong>First name: </strong>[[${user.firstName}]]</p>-->
+<!--    <p th:inline="text"><strong>Last name: </strong>[[${user.lastName}]]</p>-->
+<!--    <p th:inline="text"><strong>Email: </strong>[[${user.email}]]</p>-->
+<!--    <p th:inline="text"><strong>Username: </strong>[[${user.username}]]</p>-->
+<!--    <p th:inline="text"><strong>Password: </strong>[[${user.password}]]</p>-->
+<!--    ////////////////////////////////////////////////////////////////////////////////-->
 
 
+
+    <h1 class="display-4" style="text-align: center"><strong>MY ACCOUNT</strong> </h1>
+    <hr class="mt-2 mb-2">
+
+    <a href="/logout"><button type="button" class="btn btn btn-primary" style="float: right">Log Out</button></a>
+
+    <div class="row">
+        <div class="col-4" ></div>
+        <div class="col-4">
+<!--            <a href="/logout"><button type="button" class="btn btn btn-primary">Log Out</button></a>-->
+
+            <br>
+            <br>
+            <br>
+
+            <div class="well">
+            <p th:inline="text"><strong>First name: </strong>[[${user.firstName}]]</p>
+            <p th:inline="text"><strong>Last name: </strong>[[${user.lastName}]]</p>
+            <p th:inline="text"><strong>Email: </strong>[[${user.email}]]</p>
+            <p th:inline="text"><strong>Username: </strong>[[${user.username}]]</p>
+            <p th:inline="text"><strong>Password: </strong>[[${user.password}]]</p>
+            </div>
+
+            <br><br><br><br><br><br>
+
+        </div>
+        <div class="col-4" ></div>
+    </div>
+
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
 </body>
 </html>
