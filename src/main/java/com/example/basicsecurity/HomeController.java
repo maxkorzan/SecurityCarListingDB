@@ -1,6 +1,7 @@
 package com.example.basicsecurity;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,13 +23,23 @@ public class HomeController {
     CarRepository carRepository;
     @Autowired
     CloudinaryConfig cloudc;
+    @Autowired
+    UserRepository userRepository;
 
     @RequestMapping("/")
-    public String index(Model model){
+    public String index(Model model, Principal principal, Authentication authentication){
         //pull all categories from repo --> template
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("cars", carRepository.findAll());
-        return "index";
+        String username = null;
+        try {
+            username = principal.getName();
+            model.addAttribute("car_user_id", userRepository.findByUsername(principal.getName()).getId());
+            return "index";
+        } catch (Exception e){
+            model.addAttribute("car_user_id", 0);
+            return "index";
+        }
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -49,14 +60,17 @@ public class HomeController {
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
     @GetMapping("/addCar")
-    public String formCar(Model model){
+    public String formCar(Model model, Principal principal){
         model.addAttribute("car", new Car());
         model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("user_id",userRepository.findByUsername(principal.getName()).getId());
         return "formCar";
     }
 
     @PostMapping("/processCar")
-    public String processForm(@Valid @ModelAttribute Car car, BindingResult result, /*@RequestParam("pic") String pic,*/  @RequestParam("category") long id, @RequestParam("file") MultipartFile file){
+    public String processForm(@Valid @ModelAttribute Car car, BindingResult result, /*@RequestParam("pic") String pic,*/
+                              @RequestParam("category") long id, @RequestParam("file") MultipartFile file,
+                              @RequestParam("car_user_id") long car_user_id, Principal principal){
         if (result.hasErrors()){
             return "formCar";
         }
@@ -74,6 +88,20 @@ public class HomeController {
                 return "redirect:/addCar";
             }
         }
+/////////////////////////////////////////
+//        if (car_user_id == 0) {
+//            String username = principal.getName();
+//            User user = userRepository.findByUsername(username);
+//            car.setUser(user);
+//        }
+
+//        else{
+
+                User user = userRepository.findById(car_user_id).get();
+                car.setUser(user);
+//            }
+/////////////////////////////////////////
+
         Category category = categoryRepository.findById(id).get();
         car.setCategory(category);
         carRepository.save(car);
@@ -90,8 +118,9 @@ public class HomeController {
     }
 
     @RequestMapping("/update/{id}")
-    public String updateCar(@PathVariable("id") long id, Model model) {
+    public String updateCar(@PathVariable("id") long id, Model model, Principal principal) {
         model.addAttribute("car", carRepository.findById(id).get());
+        model.addAttribute("user_id", userRepository.findByUsername(principal.getName()).getId());
 
         Car car=carRepository.findById(id).get();
 //        String pic=car.getImage();                //THE HARD WAY USING REQUESTPARAM
@@ -182,15 +211,15 @@ public class HomeController {
     //////////////////////////////////////////////////////
 
     //4.05 PERSISTING CURRENT USER INFO
-    @Autowired
-    UserRepository userRepository;
+//    @Autowired
+//    UserRepository userRepository;
 
     @RequestMapping("/secure")
 //    public String secure(){
 //        return "secure";
 //    }
     public String secure(Principal principal, Model model){
-        String username = principal.getName();
+        String username = principal.getName();  /* Principal.getName <-- this gets you the current user's "username" */
         model.addAttribute("user", userRepository.findByUsername(username));
         return "secure";
     }

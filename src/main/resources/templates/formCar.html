@@ -28,6 +28,7 @@
 
             <form th:action="@{/processCar}" th:object="${car}" method="post" enctype="multipart/form-data">
                 <input type="hidden" th:field="*{id}">
+                <input type="hidden" th:value="${user_id}" name="car_user_id">
 
                 <div class="form-group">
                     <input type="text" th:field="*{name}" class="form-control" placeholder="Enter Make and Model" required>

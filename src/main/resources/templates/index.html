@@ -57,8 +57,11 @@
                 <br>
 
                 <a th:href="@{/detail/{id}(id=${car.id})}"><button type="button" class="btn btn-sm btn-primary" >Details</button></a>
+
+                <div th:if="${car.user.getId()} == ${car_user_id}">
                 <a th:href="@{/update/{id}(id=${car.id})}"><button type="button" class="btn btn-sm btn-warning" >Update</button></a>
                 <a th:href="@{/delete/{id}(id=${car.id})}"><button type="button" class="btn btn-sm btn-danger" >Delete</button></a>
+                </div>
 
                 <!--
                 th:if car.user.id == (currently logged in user)
