@@ -1,0 +1,27 @@
+body{
+    /*color: white;*/
+    /*background-image: url("https://res.cloudinary.com/dwsdggfi5/image/upload/v1582908331/Images/background/photo-1550468650-c128cc3c4366_wuv3dm.jpg");*/
+    /*background-color: rgba(0, 0, 0, 0.4);*/
+    /*background-blend-mode: lighten;*/
+
+    background: url("images/background/photo-1425342605259-25d80e320565.jfif") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+}
+
+
+.bg-faded{
+    background-color: rgba(0, 0, 0, 0.31);
+}
+
+.bg-clear{
+    background-color: rgba(255, 255, 255, 0);
+}
+
+
+.category-bar{
+    background-color: rgba(255, 255, 255, 0.26);
+}

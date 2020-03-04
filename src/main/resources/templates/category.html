@@ -5,7 +5,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="/style.css">
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
     <style>
         /** { border: 1px solid red !important; }*/
     </style>
@@ -18,9 +18,10 @@
 <br>
 
 
+
 <div class="container">
     <!--Header-->
-    <h1 class="mt-4 mb-3">Showroom <small style="color: white">Current Inventory</small></h1>
+    <h1 class="mt-4 mb-3">Showroom <small style="color: white" th:inline="text">[[${category.name}]]s</small></h1>
 </div>
 
 <div class="container bg-faded text-white">
@@ -32,19 +33,17 @@
         </li>
         <div th:each="category : ${categories}">
             <li class="breadcrumb-item">
-                <a  th:href="@{/category/{id}(id=${category.id})}"><button type="button" class="btn btn-outline-dark" th:text="${category.name}"></button></a>&emsp;
+                <a th:href="@{/category/{id}(id=${category.id})}"><button type="button" class="btn btn-outline-dark" th:text="${category.name}"></button></a>&emsp;
             </li>
         </div>
     </ol>
 
     <!-- Project One -->
-    <div th:each="car : ${cars}">
+    <div th:each="car : ${category.cars}">
         <div class="row">
             <div class="col-md-7">
                 <a href="#">
-                    <div th:if="${car.image} != null">
                     <img class="img-fluid rounded mb-3 mb-md-0" th:src="${car.image}" alt="CLOUDINARRRYYYYYYYYYY">
-                    </div>
                 </a>
             </div>
             <div class="col-md-5">
@@ -65,7 +64,6 @@
         <br>
 
     </div>
-
 </div>
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

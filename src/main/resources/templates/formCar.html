@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+    <style>
+        /** { border: 1px solid red !important; }*/
+    </style>
+
+</head>
+<body>
+
+<div th:replace="base :: navbar"></div>
+<br>
+<br>
+
+<div class="container">
+
+    <h1 class="display-4" style="text-align: center"><strong>ADD CAR</strong></h1>
+    <hr class="mt-2 mb-5">
+
+    <div class="row">
+        <div class="col-4" ></div>
+        <div class="col-4" >
+
+            <form th:action="@{/processCar}" th:object="${car}" method="post" enctype="multipart/form-data">
+                <input type="hidden" th:field="*{id}">
+
+                <div class="form-group">
+                    <input type="text" th:field="*{name}" class="form-control" placeholder="Enter Make and Model" required>
+                    <span th:if="${#fields.hasErrors('name')}"
+                          th:errors="*{name}"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" th:field="*{year}" class="form-control" placeholder="Enter Year" required>
+                    <span th:if="${#fields.hasErrors('year')}"
+                          th:errors="*{year}"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" th:field="*{price}" class="form-control" placeholder="Enter Price" required>
+                    <span th:if="${#fields.hasErrors('price')}"
+                          th:errors="*{price}"></span>
+                </div>
+
+                <!--    selection bar of company names-->
+                <select class="custom-select" name="category" required>
+                    <option selected>Select Category</option>
+                    <div th:each="category : ${categories}">
+                        <option th:value="${category.getId()}" th:text="${category.getName()}"></option>
+                    </div>
+                </select>
+
+                <!--upload image for cloudinary-->
+                <div class="form-group">
+                    <label for="fileupload">Upload photo</label>
+                    <input type="hidden" th:field="*{image}">              <!--THE HARD WAY USING REQUESTPARAM th:value="${pic}" name="pic"-->
+                    <input type="file" name="file" class="form-control-file" id="fileupload">
+
+                </div>
+
+
+                <br>
+                <br>
+                <button type="submit" value="Submit" class="btn btn-lg btn-outline-light" style="margin: auto"><strong>Submit</strong></button>
+                <br>
+            </form>
+
+        </div>
+        <div class="col-4" ></div>
+    </div>
+
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+</html>

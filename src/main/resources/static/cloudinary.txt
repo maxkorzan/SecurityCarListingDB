@@ -1,0 +1,16 @@
+Cloudinary Login
+
+email: levogi4314@nuevomail.com
+password: Cloudinary1!
+
+Cloud name:	
+dwsdggfi5
+
+API Key:	
+584755344214182
+
+API Secret:	
+8hQa_Hxp6k9yeriZeFUquz1wxn4
+
+Environment variable:	
+CLOUDINARY_URL=cloudinary://584755344214182:8hQa_Hxp6k9yeriZeFUquz1wxn4@dwsdggfi5
