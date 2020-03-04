@@ -4,6 +4,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Set;
 
 @Entity
 @Table(name="User_Data")
@@ -30,9 +31,17 @@ public class User {
     @Column(name = "username")
     private String username;
 
+
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> roles;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    public Set<Car> cars;
+
+
+    /////////////////////////////////////////////////////////////
 
     public User() {
     }
@@ -45,6 +54,8 @@ public class User {
         this.setEnabled(enabled);
         this.setUsername(username);
     }
+
+    /////////////////////////////////////////////////////////////
 
     public long getId() {
         return id;
@@ -110,4 +121,13 @@ public class User {
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
     }
+
+    public Set<Car> getCars() {
+        return cars;
+    }
+
+    public void setCars(Set<Car> cars) {
+        this.cars = cars;
+    }
+
 }

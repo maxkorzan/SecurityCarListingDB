@@ -12,9 +12,17 @@ public class Car {
     private String price;
     private String image;
 
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+
+    /////////////////////////////////////////////////////////////
 
     public Car() {
         this.image="https://res.cloudinary.com/dwsdggfi5/image/upload/v1583268617/defaultCarImage_kijrsj.jpg";
@@ -72,5 +80,13 @@ public class Car {
         this.category = category;
     }
 
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
 }
