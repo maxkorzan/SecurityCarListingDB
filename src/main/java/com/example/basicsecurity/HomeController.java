@@ -31,6 +31,7 @@ public class HomeController {
         //pull all categories from repo --> template
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("cars", carRepository.findAll());
+
         String username = null;
         try {
             username = principal.getName();
@@ -96,7 +97,6 @@ public class HomeController {
 //        }
 
 //        else{
-
                 User user = userRepository.findById(car_user_id).get();
                 car.setUser(user);
 //            }
@@ -111,10 +111,22 @@ public class HomeController {
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
     @RequestMapping("/detail/{id}")
-    public String showCar(@PathVariable("id") long id, Model model) {
+    public String showCar(@PathVariable("id") long id, Model model, Principal principal, Authentication authentication) {
         model.addAttribute("car", carRepository.findById(id).get());
         model.addAttribute("categories", categoryRepository.findAll());
-        return "show";
+//        model.addAttribute("car_user_id", userRepository.findByUsername(principal.getName()).getId());
+
+        String username = null;
+        try {
+            username = principal.getName();
+            model.addAttribute("car_user_id", userRepository.findByUsername(principal.getName()).getId());
+            return "show";
+        } catch (Exception e){
+            model.addAttribute("car_user_id", 0);
+            return "show";
+        }
+
+//        return "show";
     }
 
     @RequestMapping("/update/{id}")
@@ -139,11 +151,23 @@ public class HomeController {
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
     @RequestMapping("/category/{id}")
-    public String category(@PathVariable("id") long id, Model model) {
+    public String category(@PathVariable("id") long id, Model model, Principal principal, Authentication authentication) {
         model.addAttribute("category", categoryRepository.findById(id).get());
         model.addAttribute("cars", carRepository.findAll());
         model.addAttribute("categories", categoryRepository.findAll());
-        return "category";
+//        model.addAttribute("car_user_id", userRepository.findByUsername(principal.getName()).getId());
+
+        String username = null;
+        try {
+            username = principal.getName();
+            model.addAttribute("car_user_id", userRepository.findByUsername(principal.getName()).getId());
+            return "category";
+        } catch (Exception e){
+            model.addAttribute("car_user_id", 0);
+            return "category";
+        }
+
+//        return "category";
     }
 
 

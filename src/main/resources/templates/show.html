@@ -48,13 +48,24 @@
             </div>
             <div class="col-md-5">
                 <h1 th:inline="text">[[${car.name}]]</h1>
-                <p th:inline="text">Year: [[${car.year}]]</p>
-                <p th:inline="text">Type: [[${car.category.name}]]</p>
-                <p th:inline="text">MSRP: [[${car.price}]]</p>
+                <div th:inline="text">Year: [[${car.year}]]</div>
+                <div th:inline="text">Type: [[${car.category.name}]]</div>
+                <div th:inline="text">MSRP: [[${car.price}]]</div>
+                <div th:inline="text">Added by: [[${car.user.username}]]</div>
 
-                <a th:href="@{/update/{id}(id=${car.id})}"><button type="button" class="btn btn-sm btn-primary" style="opacity: 80%">Update</button></a>
-                <a th:href="@{/detail/{id}(id=${car.id})}"><button type="button" class="btn btn-sm btn-primary" style="opacity: 80%">Details</button></a>
-                <a th:href="@{/delete/{id}(id=${car.id})}"><button type="button" class="btn btn-sm btn-danger" style="opacity: 80%">Delete</button></a>
+                <br>
+
+<!--                <a th:href="@{/update/{id}(id=${car.id})}"><button type="button" class="btn btn-sm btn-primary" style="opacity: 80%">Update</button></a>-->
+<!--                <a th:href="@{/detail/{id}(id=${car.id})}"><button type="button" class="btn btn-sm btn-primary" style="opacity: 80%">Details</button></a>-->
+<!--                <a th:href="@{/delete/{id}(id=${car.id})}"><button type="button" class="btn btn-sm btn-danger" style="opacity: 80%">Delete</button></a>-->
+
+                <a th:href="@{/detail/{id}(id=${car.id})}"><button type="button" class="btn btn-sm btn-primary" >Details</button></a>
+                <br><br>
+                <div th:if="${car.user.getId()} == ${car_user_id}">
+                    <a th:href="@{/update/{id}(id=${car.id})}"><button type="button" class="btn btn-sm btn-warning" >Update</button></a>
+                    <a th:href="@{/delete/{id}(id=${car.id})}"><button type="button" class="btn btn-sm btn-danger" >Delete</button></a>
+                </div>
+
             </div>
 
         </div>
